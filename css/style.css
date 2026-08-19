@@ -1,0 +1,829 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   PROJECT SECTION
+========================================================= */
+
+.project-section {
+    position: relative;
+    width: 100%;
+    height: 220vh;
+}
+
+
+/* =========================================================
+   STICKY CONTAINER
+========================================================= */
+
+.project-sticky {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #111;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.project-image {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+    transition:
+        width 0.08s linear,
+        height 0.08s linear,
+        left 0.08s linear,
+        top 0.08s linear;
+}
+
+.project-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.project-left {
+    position: absolute;
+
+    left: 3%;
+    top: 50%;
+
+    width: 27%;
+    max-width: 420px;
+
+    transform: translateY(-50%);
+
+    opacity: 0;
+
+    z-index: 3;
+
+    transition:
+        opacity 0.08s linear,
+        transform 0.08s linear;
+}
+
+.project-left h2 {
+    margin: 0 0 20px;
+
+    font-size: clamp(24px, 2vw, 36px);
+    line-height: 1.25;
+
+    font-weight: 400;
+
+    color: #fff;
+
+    overflow-wrap: break-word;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+
+    color: #aaa;
+
+    font-size: clamp(13px, 1vw, 16px);
+
+    line-height: 1.5;
+
+    overflow-wrap: break-word;
+}
+
+.location span {
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+========================================================= */
+
+.project-right {
+    position: absolute;
+
+    right: 3%;
+    top: 50%;
+
+    width: 27%;
+    max-width: 420px;
+
+    transform: translateY(-50%);
+
+    opacity: 0;
+
+    z-index: 3;
+
+    transition:
+        opacity 0.08s linear,
+        transform 0.08s linear;
+}
+
+.project-right p {
+    margin: 0 0 25px;
+
+    font-size: clamp(14px, 1vw, 16px);
+
+    line-height: 1.7;
+
+    color: #fff;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   BROCHURE BUTTON
+========================================================= */
+
+.brochure-btn {
+    display: block;
+
+    width: 100%;
+
+    padding: 15px 16px;
+
+    background: #333;
+
+    color: #fff;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.brochure-btn:hover {
+    background: #222;
+    transform: translateY(-2px);
+}
+
+.scroll-down {
+        position: absolute;
+        top: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        text-decoration: none;
+        z-index: 10;
+    }
+
+    .scroll-down span {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 3px;
+    }
+
+    .scroll-down i {
+        width: 18px;
+        height: 18px;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        transform: rotate(45deg);
+        animation: arrowDown 1.5s infinite;
+    }
+
+    @keyframes arrowDown {
+        0% {
+            transform: rotate(45deg) translate(-2px, -2px);
+            opacity: 0;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: rotate(45deg) translate(7px, 7px);
+            opacity: 0;
+        }
+    }
+
+    .building-section {
+        height: 200vh;
+        position: relative;
+        background: #f5f5f3;
+    }
+
+    .building-wrapper {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .building-svg {
+        width: min(40vw, 500px);
+        height: 85vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .building-svg svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    /* All building lines */
+    .building-svg svg path {
+        fill: none;
+        stroke: #111;
+        stroke-width: 1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+
+        transition: stroke-dashoffset 0.05s linear;
+    }
+
+    /* Filled brick */
+    .building-svg svg .brick[fill] {
+        fill: #e2e2e2;
+    }
+
+    /* Text */
+    .building-content {
+        width: 40%;
+        padding-left: 8vw;
+    }
+
+    .building-label {
+        font-size: 11px;
+        letter-spacing: 4px;
+        font-weight: 600;
+    }
+
+    .building-content h2 {
+        font-size: clamp(50px, 6vw, 100px);
+        line-height: .9;
+        font-weight: 500;
+        margin: 25px 0;
+    }
+
+    .building-content p {
+        max-width: 400px;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #555;
+    }
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1440px) {
+
+    .project-left {
+        left: 4%;
+        width: 25%;
+    }
+
+    .project-right {
+        right: 4%;
+        width: 25%;
+    }
+
+    .project-left h2 {
+        font-size: 36px;
+    }
+
+    .project-right p {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .project-section {
+        height: 200vh;
+    }
+
+    .project-sticky {
+        height: 100vh;
+        height: 100svh;
+    }
+
+    .project-left {
+        left: 2.5%;
+        width: 28%;
+    }
+
+    .project-right {
+        right: 2.5%;
+        width: 28%;
+    }
+
+    .project-left h2 {
+        font-size: 25px;
+    }
+
+    .project-right p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .location {
+        font-size: 13px;
+    }
+
+    .brochure-btn {
+        padding: 13px;
+    }
+
+     .building-content {
+        width: 45%;
+        padding-left: 5vw;
+    }
+
+    .building-svg {
+        width: 42vw;
+        height: 75vh;
+    }
+
+    .building-content h2 {
+        font-size: 60px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+
+    .building-section {
+        height: 180vh;
+    }
+
+    .building-wrapper {
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px 20px;
+    }
+
+    .building-content {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 20px;
+        z-index: 2;
+    }
+
+    .building-label {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .building-content h2 {
+        font-size: clamp(42px, 12vw, 65px);
+        line-height: .9;
+        margin: 15px 0;
+    }
+
+    .building-content p {
+        max-width: 320px;
+        margin: 0 auto;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .building-svg {
+        width: 75vw;
+        height: 55vh;
+        max-width: 350px;
+    }
+
+    .building-svg svg {
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    .project-section {
+        position: relative;
+        width: 100%;
+        height: 200vh;
+        min-height: 1100px;
+    }
+
+    .project-sticky {
+        position: sticky;
+        top: 0;
+
+        width: 100%;
+        height: 100vh;
+        height: 100svh;
+
+        min-height: 560px;
+
+        display: block;
+
+        overflow: hidden;
+
+        background: #111;
+    }
+
+
+    /* =====================================================
+       IMAGE
+    ===================================================== */
+
+    .project-image {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        left: 0;
+        top: 0;
+
+        overflow: hidden;
+
+        z-index: 1;
+
+        transition: none;
+    }
+
+    .project-image img {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        object-position: center center;
+    }
+
+
+    /* =====================================================
+       LEFT CONTENT
+    ===================================================== */
+
+    .project-left {
+        position: absolute;
+
+        left: 15px;
+        top: 38%;
+
+        width: calc(100% - 30px);
+
+        max-width: none;
+
+        padding: 20px;
+
+        opacity: 0;
+
+        z-index: 3;
+
+        transform: translateY(30px);
+
+        color: #fff;
+
+        background: rgba(255, 255, 255, 0.12);
+
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.25);
+
+        transition: none;
+    }
+
+    .project-left h2 {
+        margin: 0 0 12px;
+
+        font-size: clamp(21px, 6vw, 30px);
+
+        line-height: 1.2;
+
+        color: #fff;
+    }
+
+    .location {
+        display: flex;
+        align-items: flex-start;
+
+        width: 100%;
+
+        color: rgba(255, 255, 255, 0.9);
+
+        font-size: clamp(12px, 3.5vw, 15px);
+
+        line-height: 1.5;
+    }
+
+    .location span {
+        flex-shrink: 0;
+
+        margin-right: 7px;
+    }
+
+
+    /* =====================================================
+       RIGHT CONTENT
+    ===================================================== */
+
+    .project-right {
+        position: absolute;
+
+        left: 15px;
+        right: auto;
+        top: 61%;
+
+        width: calc(100% - 30px);
+
+        max-width: none;
+
+        padding: 20px;
+
+        opacity: 0;
+
+        z-index: 3;
+
+        transform: translateY(30px);
+
+        color: #fff;
+
+        background: rgba(255, 255, 255, 0.12);
+
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.25);
+
+        transition: none;
+    }
+
+    .project-right p {
+        margin: 0 0 18px;
+
+        font-size: clamp(13px, 3.5vw, 15px);
+
+        line-height: 1.6;
+
+        color: #fff;
+    }
+
+
+    /* =====================================================
+       BROCHURE
+    ===================================================== */
+
+    .brochure-btn {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+
+        min-height: 46px;
+
+        padding: 12px 15px;
+
+        border-radius: 8px;
+
+        background: rgba(255, 255, 255, 0.95);
+
+        color: #222;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        text-decoration: none;
+
+        transition: none;
+    }
+
+    .brochure-btn:hover {
+        background: #fff;
+        transform: none;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+
+    .building-section {
+        height: 170vh;
+    }
+
+    .building-wrapper {
+        padding: 20px 15px;
+    }
+
+    .building-content {
+        margin-bottom: 10px;
+    }
+
+    .building-content h2 {
+        font-size: 42px;
+    }
+
+    .building-content p {
+        font-size: 13px;
+        max-width: 290px;
+    }
+
+    .building-svg {
+        width: 82vw;
+        height: 50vh;
+    }
+
+
+    .project-section {
+        height: 200vh;
+        min-height: 1050px;
+    }
+
+    .project-sticky {
+        min-height: 520px;
+    }
+
+    .project-left {
+        left: 12px;
+        width: calc(100% - 24px);
+        padding: 17px;
+        border-radius: 14px;
+    }
+
+    .project-right {
+        left: 12px;
+        width: calc(100% - 24px);
+        padding: 17px;
+        border-radius: 14px;
+    }
+
+    .project-left h2 {
+        font-size: 21px;
+    }
+
+    .location {
+        font-size: 12px;
+    }
+
+    .project-right p {
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .brochure-btn {
+        min-height: 44px;
+        padding: 11px;
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .project-section {
+        height: 200vh;
+        min-height: 1000px;
+    }
+
+    .project-sticky {
+        min-height: 500px;
+    }
+
+    .project-left {
+        top: 37%;
+        padding: 15px;
+    }
+
+    .project-right {
+        top: 60%;
+        padding: 15px;
+    }
+
+    .project-left h2 {
+        font-size: 19px;
+    }
+
+    .location {
+        font-size: 11px;
+    }
+
+    .project-right p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .project-image,
+    .project-left,
+    .project-right,
+    .brochure-btn {
+        transition: none !important;
+    }
+}
