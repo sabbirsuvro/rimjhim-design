@@ -207,12 +207,6 @@ function updateProjectAnimation() {
         }
 
 
-        /*
-        =================================================
-        DESKTOP
-        =================================================
-        */
-
 
         /*
         ---------------------------------------------
@@ -346,3 +340,915 @@ INITIAL
 */
 
 updateProjectAnimation();
+
+
+
+// Side carousale
+document.addEventListener("DOMContentLoaded", function () {
+
+    const track = document.getElementById("projectTrack");
+
+    const carousel = document.querySelector(".project-carousel");
+
+    const nextBtn = document.getElementById("nextBtn");
+
+    const prevBtn = document.getElementById("prevBtn");
+
+
+    /*
+    ==========================================
+    ORIGINAL ITEMS
+    ==========================================
+    */
+
+    const originalItems = Array.from(
+        track.querySelectorAll(".project-item")
+    );
+
+
+    let currentIndex = 0;
+
+    let isAnimating = false;
+
+    const autoSlideTime = 3500;
+
+
+    /*
+    ==========================================
+    CLONE FIRST ITEM
+    ==========================================
+    */
+
+    const firstClone = originalItems[0].cloneNode(true);
+
+    firstClone.classList.remove("active");
+
+    track.appendChild(firstClone);
+
+
+    /*
+    ==========================================
+    GET ALL ITEMS
+    ==========================================
+    */
+
+    function getItems() {
+
+        return track.querySelectorAll(".project-item");
+
+    }
+
+
+    /*
+    ==========================================
+    ACTIVE CLASS
+    ==========================================
+    */
+
+    function updateActive() {
+
+        const items = getItems();
+
+        items.forEach(function (item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+        items[currentIndex].classList.add("active");
+
+    }
+
+
+    /*
+    ==========================================
+    CALCULATE POSITION
+    ==========================================
+    */
+
+   function getTranslateX() {
+
+    const items = getItems();
+
+    const activeItem = items[currentIndex];
+
+    const carouselWidth = carousel.offsetWidth;
+
+    const activeWidth = activeItem.offsetWidth;
+
+
+    /*
+    ==========================================
+    CENTER ACTIVE IMAGE
+    ==========================================
+    */
+
+    let position =
+        activeItem.offsetLeft -
+        (
+            carouselWidth -
+            activeWidth
+        ) / 2;
+
+
+    /*
+    ==========================================
+    PREVENT NEGATIVE POSITION
+    ==========================================
+    */
+
+    return Math.max(0, position);
+
+}
+
+
+    /*
+    ==========================================
+    MOVE CAROUSEL
+    ==========================================
+    */
+
+    function moveCarousel(animate = true) {
+
+        const position = getTranslateX();
+
+
+        if (!animate) {
+
+            track.style.transition = "none";
+
+        } else {
+
+            track.style.transition =
+                "transform .85s cubic-bezier(.77,0,.18,1)";
+
+        }
+
+
+        track.style.transform =
+            `translateX(-${position}px)`;
+
+
+        updateActive();
+
+    }
+
+
+    /*
+    ==========================================
+    NEXT
+    ==========================================
+    */
+
+    function nextSlide() {
+
+        if (isAnimating) {
+            return;
+        }
+
+
+        isAnimating = true;
+
+
+        currentIndex++;
+
+
+        moveCarousel(true);
+
+
+        /*
+        Reached cloned first slide
+        */
+
+        if (
+            currentIndex ===
+            originalItems.length
+        ) {
+
+            setTimeout(function () {
+
+                /*
+                Disable transition
+                */
+
+                track.style.transition = "none";
+
+
+                /*
+                Go back to first slide
+                */
+
+                currentIndex = 0;
+
+
+                moveCarousel(false);
+
+
+                /*
+                Force repaint
+                */
+
+                track.offsetHeight;
+
+
+                /*
+                Restore transition
+                */
+
+                track.style.transition =
+                    "transform .85s cubic-bezier(.77,0,.18,1)";
+
+
+                isAnimating = false;
+
+            }, 900);
+
+
+        } else {
+
+            setTimeout(function () {
+
+                isAnimating = false;
+
+            }, 900);
+
+        }
+
+    }
+
+
+    /*
+    ==========================================
+    PREVIOUS
+    ==========================================
+    */
+
+    function prevSlide() {
+
+        if (isAnimating) {
+            return;
+        }
+
+
+        isAnimating = true;
+
+
+        /*
+        If first item,
+        jump to last item
+        */
+
+        if (currentIndex === 0) {
+
+            currentIndex =
+                originalItems.length - 1;
+
+
+            moveCarousel(false);
+
+
+            track.offsetHeight;
+
+
+            isAnimating = false;
+
+
+            return;
+
+        }
+
+
+        currentIndex--;
+
+
+        moveCarousel(true);
+
+
+        setTimeout(function () {
+
+            isAnimating = false;
+
+        }, 900);
+
+    }
+
+
+    /*
+    ==========================================
+    BUTTONS
+    ==========================================
+    */
+
+    nextBtn.addEventListener(
+        "click",
+        nextSlide
+    );
+
+
+    prevBtn.addEventListener(
+        "click",
+        prevSlide
+    );
+
+
+    /*
+    ==========================================
+    AUTO SLIDE
+    ==========================================
+    */
+
+    let autoSlide = setInterval(
+        nextSlide,
+        autoSlideTime
+    );
+
+
+    /*
+    ==========================================
+    PAUSE ON HOVER
+    ==========================================
+    */
+
+    carousel.addEventListener(
+        "mouseenter",
+        function () {
+
+            clearInterval(autoSlide);
+
+        }
+    );
+
+
+    /*
+    ==========================================
+    RESUME
+    ==========================================
+    */
+
+    carousel.addEventListener(
+        "mouseleave",
+        function () {
+
+            clearInterval(autoSlide);
+
+
+            autoSlide = setInterval(
+                nextSlide,
+                autoSlideTime
+            );
+
+        }
+    );
+
+
+    /*
+    ==========================================
+    TOUCH SWIPE
+    ==========================================
+    */
+
+    let touchStartX = 0;
+
+
+    carousel.addEventListener(
+        "touchstart",
+        function (event) {
+
+            touchStartX =
+                event.changedTouches[0].screenX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    carousel.addEventListener(
+        "touchend",
+        function (event) {
+
+            const touchEndX =
+                event.changedTouches[0].screenX;
+
+
+            const distance =
+                touchStartX - touchEndX;
+
+
+            if (distance > 50) {
+
+                nextSlide();
+
+            }
+
+
+            if (distance < -50) {
+
+                prevSlide();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+    ==========================================
+    RESIZE
+    ==========================================
+    */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            moveCarousel(false);
+
+        }
+    );
+
+
+    /*
+    ==========================================
+    INITIAL
+    ==========================================
+    */
+
+    updateActive();
+
+    moveCarousel(false);
+
+});
+
+
+
+
+
+/* =========================================================
+   PARTNERSHIP CAROUSEL
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const section =
+        document.querySelector(".partnership-carousel-section");
+
+    if (!section) return;
+
+
+    const track =
+        section.querySelector("#partnershipTrack");
+
+    const carousel =
+        section.querySelector(".partnership-carousel");
+
+    const nextBtn =
+        section.querySelector("#partnershipNextBtn");
+
+    const prevBtn =
+        section.querySelector("#partnershipPrevBtn");
+
+
+    if (!track || !carousel || !nextBtn || !prevBtn) {
+        return;
+    }
+
+
+    /*
+    =========================================================
+    ORIGINAL ITEMS
+    =========================================================
+    */
+
+    const originalItems =
+        Array.from(
+            track.querySelectorAll(".partnership-item")
+        );
+
+
+    if (originalItems.length === 0) {
+        return;
+    }
+
+
+    let currentIndex = 0;
+
+    let isAnimating = false;
+
+    const autoSlideTime = 3500;
+
+
+    /*
+    =========================================================
+    CLONE FIRST ITEM
+    =========================================================
+    */
+
+    const firstClone =
+        originalItems[0].cloneNode(true);
+
+    firstClone.classList.remove("active");
+
+    track.appendChild(firstClone);
+
+
+    /*
+    =========================================================
+    GET ITEMS
+    =========================================================
+    */
+
+    function getItems() {
+
+        return track.querySelectorAll(
+            ".partnership-item"
+        );
+
+    }
+
+
+    /*
+    =========================================================
+    ACTIVE
+    =========================================================
+    */
+
+    function updateActive() {
+
+        const items = getItems();
+
+        items.forEach(function (item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+        if (items[currentIndex]) {
+
+            items[currentIndex]
+                .classList.add("active");
+
+        }
+
+    }
+
+
+    /*
+    =========================================================
+    TRANSLATE
+    =========================================================
+    */
+
+    function getTranslateX() {
+
+        const items = getItems();
+
+        const activeItem =
+            items[currentIndex];
+
+        if (!activeItem) {
+            return 0;
+        }
+
+
+        const carouselWidth =
+            carousel.offsetWidth;
+
+        const activeWidth =
+            activeItem.offsetWidth;
+
+
+        /*
+        Center active image
+        */
+
+        let position =
+            activeItem.offsetLeft -
+            (
+                carouselWidth -
+                activeWidth
+            ) / 2;
+
+
+        return Math.max(0, position);
+
+    }
+
+
+    /*
+    =========================================================
+    MOVE
+    =========================================================
+    */
+
+    function moveCarousel(animate = true) {
+
+        const position =
+            getTranslateX();
+
+
+        if (!animate) {
+
+            track.style.transition = "none";
+
+        } else {
+
+            track.style.transition =
+                "transform .85s cubic-bezier(.77,0,.18,1)";
+
+        }
+
+
+        track.style.transform =
+            `translateX(-${position}px)`;
+
+
+        updateActive();
+
+    }
+
+
+    /*
+    =========================================================
+    NEXT
+    =========================================================
+    */
+
+    function nextSlide() {
+
+        if (isAnimating) {
+            return;
+        }
+
+
+        isAnimating = true;
+
+        currentIndex++;
+
+
+        moveCarousel(true);
+
+
+        /*
+        Reached cloned slide
+        */
+
+        if (
+            currentIndex ===
+            originalItems.length
+        ) {
+
+            setTimeout(function () {
+
+                track.style.transition =
+                    "none";
+
+
+                currentIndex = 0;
+
+
+                moveCarousel(false);
+
+
+                /*
+                Force browser repaint
+                */
+
+                track.offsetHeight;
+
+
+                track.style.transition =
+                    "transform .85s cubic-bezier(.77,0,.18,1)";
+
+
+                isAnimating = false;
+
+            }, 900);
+
+        } else {
+
+            setTimeout(function () {
+
+                isAnimating = false;
+
+            }, 900);
+
+        }
+
+    }
+
+
+    /*
+    =========================================================
+    PREVIOUS
+    =========================================================
+    */
+
+    function prevSlide() {
+
+        if (isAnimating) {
+            return;
+        }
+
+
+        isAnimating = true;
+
+
+        /*
+        First slide
+        */
+
+        if (currentIndex === 0) {
+
+            currentIndex =
+                originalItems.length - 1;
+
+
+            moveCarousel(false);
+
+
+            track.offsetHeight;
+
+
+            isAnimating = false;
+
+            return;
+
+        }
+
+
+        currentIndex--;
+
+
+        moveCarousel(true);
+
+
+        setTimeout(function () {
+
+            isAnimating = false;
+
+        }, 900);
+
+    }
+
+
+    /*
+    =========================================================
+    BUTTONS
+    =========================================================
+    */
+
+    nextBtn.addEventListener(
+        "click",
+        nextSlide
+    );
+
+
+    prevBtn.addEventListener(
+        "click",
+        prevSlide
+    );
+
+
+    /*
+    =========================================================
+    AUTO SLIDE
+    =========================================================
+    */
+
+    let autoSlide =
+        setInterval(
+            nextSlide,
+            autoSlideTime
+        );
+
+
+    /*
+    =========================================================
+    PAUSE ON HOVER
+    =========================================================
+    */
+
+    carousel.addEventListener(
+        "mouseenter",
+        function () {
+
+            clearInterval(autoSlide);
+
+        }
+    );
+
+
+    /*
+    =========================================================
+    RESUME
+    =========================================================
+    */
+
+    carousel.addEventListener(
+        "mouseleave",
+        function () {
+
+            clearInterval(autoSlide);
+
+
+            autoSlide =
+                setInterval(
+                    nextSlide,
+                    autoSlideTime
+                );
+
+        }
+    );
+
+
+    /*
+    =========================================================
+    TOUCH SWIPE
+    =========================================================
+    */
+
+    let touchStartX = 0;
+
+
+    carousel.addEventListener(
+        "touchstart",
+        function (event) {
+
+            touchStartX =
+                event.changedTouches[0].screenX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    carousel.addEventListener(
+        "touchend",
+        function (event) {
+
+            const touchEndX =
+                event.changedTouches[0].screenX;
+
+
+            const distance =
+                touchStartX - touchEndX;
+
+
+            if (distance > 50) {
+
+                nextSlide();
+
+            }
+
+
+            if (distance < -50) {
+
+                prevSlide();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+    =========================================================
+    RESIZE
+    =========================================================
+    */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            moveCarousel(false);
+
+        }
+    );
+
+
+    /*
+    =========================================================
+    INITIAL
+    =========================================================
+    */
+
+    updateActive();
+
+    moveCarousel(false);
+
+});
+
+

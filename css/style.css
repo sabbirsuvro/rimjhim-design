@@ -261,7 +261,8 @@ body {
     .building-section {
         height: 200vh;
         position: relative;
-        background: #f5f5f3;
+        background: #000000;
+        color: #fff;
     }
 
     .building-wrapper {
@@ -294,7 +295,7 @@ body {
     /* All building lines */
     .building-svg svg path {
         fill: none;
-        stroke: #111;
+        stroke: #fff;
         stroke-width: 1;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -721,6 +722,7 @@ body {
     .building-svg {
         width: 82vw;
         height: 50vh;
+        color: #fff;
     }
 
 
@@ -785,12 +787,12 @@ body {
     }
 
     .project-left {
-        top: 37%;
+        top: 37% !important;
         padding: 15px;
     }
 
     .project-right {
-        top: 60%;
+        top: 57% !important;
         padding: 15px;
     }
 
@@ -826,4 +828,1720 @@ body {
     .brochure-btn {
         transition: none !important;
     }
+}
+
+/* =========================================================
+   PROJECT / HAPPY CUSTOMER CAROUSEL
+========================================================= */
+
+.project-carousel-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+
+    overflow: hidden;
+    background: #fff;
+
+    clear: both;
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.project-carousel-section .project-bg {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 48%;
+
+    background: #24235f;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.project-carousel-section .project-content {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 43%;
+    height: 100%;
+
+    padding-left: clamp(30px, 7vw, 110px);
+    padding-top: clamp(50px, 8vh, 100px);
+    background-color: #fff;
+    z-index: 20;
+}
+
+
+/* LABEL */
+
+.project-carousel-section .label {
+    display: block;
+
+    margin-bottom: 20px;
+
+    font-size: clamp(10px, .9vw, 14px);
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+
+    color: #25255f;
+}
+
+
+/* TITLE */
+
+.project-carousel-section h1 {
+    margin: 0 0 25px;
+
+    font-size: clamp(40px, 4.2vw, 68px);
+
+    line-height: .98;
+
+    font-weight: 400;
+
+    color: #161638;
+
+    letter-spacing: -2px;
+}
+
+
+/* INFO */
+
+.project-carousel-section .project-info {
+    margin-top: 10px;
+
+    max-width: 520px;
+
+    font-size: clamp(12px, 1vw, 15px);
+
+    line-height: 1.6;
+
+    font-weight: 600;
+
+    color: #1d1d42;
+}
+
+
+/* DESCRIPTION */
+
+.project-carousel-section p {
+    max-width: 500px;
+
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    font-size: clamp(13px, 1.05vw, 16px);
+
+    line-height: 1.6;
+
+    color: #202044;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.project-carousel-section .project-controls {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+
+.project-carousel-section .project-arrow {
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 1px solid #24245c;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    color: #24245c;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+
+.project-carousel-section .project-arrow:hover {
+    background: #24245c;
+
+    color: #fff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+
+.project-carousel-section .project-carousel {
+    position: absolute;
+
+    top: 8%;
+    right: 0;
+
+    width: 60%;
+    height: 84%;
+
+    overflow: hidden;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.project-carousel-section .project-track {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: clamp(15px, 2vw, 30px);
+
+    transition:
+        transform .85s cubic-bezier(.77, 0, .18, 1);
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   NORMAL ITEM
+========================================================= */
+
+.project-carousel-section .project-item {
+    position: relative;
+
+    flex: 0 0 clamp(230px, 25vw, 360px);
+
+    width: clamp(230px, 25vw, 360px);
+
+    height: 62%;
+
+    overflow: hidden;
+
+    opacity: .85;
+
+    flex-shrink: 0;
+
+    transition:
+        width .85s cubic-bezier(.77, 0, .18, 1),
+        height .85s cubic-bezier(.77, 0, .18, 1),
+        flex-basis .85s cubic-bezier(.77, 0, .18, 1),
+        opacity .85s ease;
+}
+
+
+/* IMAGE */
+
+.project-carousel-section .project-item img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   ACTIVE IMAGE
+========================================================= */
+
+.project-carousel-section .project-item.active {
+    flex-basis: clamp(380px, 39vw, 570px);
+
+    width: clamp(380px, 39vw, 570px);
+
+    height: 92%;
+
+    opacity: 1;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.project-carousel-section .project-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 70px 30px 30px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, .75),
+            rgba(0, 0, 0, 0)
+        );
+
+    color: #fff;
+
+    opacity: 0;
+
+    transition: opacity .5s ease;
+}
+
+
+.project-carousel-section
+.project-item.active
+.project-overlay {
+    opacity: 1;
+}
+
+
+.project-carousel-section .project-overlay h3 {
+    margin: 0 0 6px;
+
+    font-size: clamp(18px, 1.5vw, 24px);
+
+    line-height: 1.2;
+}
+
+
+.project-carousel-section .project-overlay span {
+    font-size: clamp(11px, 1vw, 14px);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    .project-carousel-section .project-content {
+        width: 42%;
+    }
+
+    .project-carousel-section .project-carousel {
+        width: 57%;
+    }
+
+    .project-carousel-section .project-item {
+        flex-basis: 360px;
+        width: 360px;
+    }
+
+    .project-carousel-section .project-item.active {
+        flex-basis: 570px;
+        width: 570px;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP / SMALL DESKTOP
+========================================================= */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .project-carousel-section .project-content {
+        width: 44%;
+
+        padding-left: 5%;
+        padding-top: 7%;
+    }
+
+
+    .project-carousel-section h1 {
+        font-size: clamp(38px, 4.2vw, 55px);
+    }
+
+
+    .project-carousel-section .project-carousel {
+        width: 65%;
+
+        top: 8%;
+        height: 84%;
+    }
+
+
+    .project-carousel-section .project-item {
+        flex-basis: 280px;
+        width: 280px;
+
+        height: 62%;
+    }
+
+
+    .project-carousel-section .project-item.active {
+        flex-basis: 440px;
+        width: 440px;
+
+        height: 92%;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .project-carousel-section {
+
+        height: 100vh;
+        min-height: 700px;
+    }
+
+
+    /* Background */
+
+    .project-carousel-section .project-bg {
+        height: 45%;
+    }
+
+
+    /* Content */
+
+    .project-carousel-section .project-content {
+
+        width: 42%;
+
+        padding-left: 4%;
+        padding-top: 8%;
+    }
+
+
+    .project-carousel-section .label {
+
+        margin-bottom: 15px;
+
+        font-size: 11px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .project-carousel-section h1 {
+
+        margin-bottom: 20px;
+
+        font-size: clamp(34px, 5vw, 48px);
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .project-carousel-section .project-info {
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .project-carousel-section p {
+
+        max-width: 340px;
+
+        margin-top: 15px;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    /* Buttons */
+
+    .project-carousel-section .project-controls {
+
+        margin-top: 22px;
+
+        gap: 12px;
+    }
+
+
+    .project-carousel-section .project-arrow {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+
+    /* Carousel */
+
+    .project-carousel-section .project-carousel {
+
+        top: 7%;
+        right: 0;
+
+        width: 65%;
+
+        height: 85%;
+    }
+
+
+    .project-carousel-section .project-track {
+
+        gap: 15px;
+    }
+
+
+    .project-carousel-section .project-item {
+
+        flex-basis: 220px;
+        width: 220px;
+
+        height: 62%;
+    }
+
+
+    .project-carousel-section .project-item.active {
+
+        flex-basis: 350px;
+        width: 350px;
+
+        height: 92%;
+    }
+
+
+    .project-carousel-section .project-overlay {
+
+        padding: 55px 20px 20px;
+    }
+
+
+    .project-carousel-section .project-overlay h3 {
+
+        font-size: 18px;
+    }
+
+
+    .project-carousel-section .project-overlay span {
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+    .project-carousel-section {
+
+        height: auto;
+
+        min-height: 100vh;
+
+        padding-bottom: 50px;
+
+        overflow: hidden;
+    }
+
+
+    .project-carousel-section .project-bg {
+
+        height: 42%;
+    }
+
+
+    .project-carousel-section .project-content {
+
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        padding:
+            55px 40px 0;
+    }
+
+
+    .project-carousel-section h1 {
+
+        font-size: clamp(38px, 7vw, 52px);
+    }
+
+
+    .project-carousel-section p {
+
+        max-width: 600px;
+    }
+
+
+    .project-carousel-section .project-carousel {
+
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width: 100%;
+
+        height: 470px;
+
+        margin-top: 40px;
+    }
+
+
+    .project-carousel-section .project-item {
+
+        flex-basis: 230px;
+        width: 230px;
+
+        height: 300px;
+    }
+
+
+    .project-carousel-section .project-item.active {
+
+        flex-basis: 320px;
+        width: 320px;
+
+        height: 440px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 575px) {
+
+    .project-carousel-section {
+
+        height: auto;
+
+        min-height: 100vh;
+
+        padding-bottom: 35px;
+
+        overflow: hidden;
+    }
+
+
+    /* Background */
+
+    .project-carousel-section .project-bg {
+
+        height: 38%;
+
+        bottom: 0;
+    }
+
+
+    /* =====================================================
+       CONTENT
+    ===================================================== */
+
+    .project-carousel-section .project-content {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: 100%;
+        height: auto;
+
+        padding:
+            45px 20px 0;
+    }
+
+
+    .project-carousel-section .label {
+
+        margin-bottom: 13px;
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .project-carousel-section h1 {
+
+        margin-bottom: 16px;
+
+        font-size: clamp(32px, 10vw, 46px);
+
+        line-height: 1;
+
+        letter-spacing: -1px;
+    }
+
+
+    .project-carousel-section .project-info {
+
+        max-width: 100%;
+
+        margin-top: 5px;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+
+    .project-carousel-section p {
+
+        max-width: 100%;
+
+        margin-top: 13px;
+
+        font-size: 13px;
+
+        line-height: 1.55;
+    }
+
+
+    /* =====================================================
+       BUTTONS
+    ===================================================== */
+
+    .project-carousel-section .project-controls {
+
+        margin-top: 20px;
+
+        gap: 10px;
+    }
+
+
+    .project-carousel-section .project-arrow {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 16px;
+    }
+
+
+    /* =====================================================
+       MOBILE CAROUSEL
+    ===================================================== */
+
+    .project-carousel-section .project-carousel {
+
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width: 100%;
+
+        height: 420px;
+
+        margin-top: 30px;
+
+        overflow: hidden;
+    }
+
+
+    .project-carousel-section .project-track {
+
+        height: 100%;
+
+        gap: 12px;
+
+        align-items: flex-start;
+    }
+
+
+    /* Normal */
+
+    .project-carousel-section .project-item {
+
+        flex-basis: 175px;
+
+        width: 175px;
+
+        height: 250px;
+    }
+
+
+    /* Active */
+
+    .project-carousel-section .project-item.active {
+
+        flex-basis: 270px;
+
+        width: 270px;
+
+        height: 395px;
+    }
+
+
+    /* Overlay */
+
+    .project-carousel-section .project-overlay {
+
+        padding:
+            60px 18px 18px;
+    }
+
+
+    .project-carousel-section .project-overlay h3 {
+
+        margin-bottom: 4px;
+
+        font-size: 18px;
+    }
+
+
+    .project-carousel-section .project-overlay span {
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .project-carousel-section .project-content {
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+
+    .project-carousel-section h1 {
+
+        font-size: 31px;
+
+        letter-spacing: -.8px;
+    }
+
+
+    .project-carousel-section .project-info {
+
+        font-size: 11px;
+    }
+
+
+    .project-carousel-section p {
+
+        font-size: 12px;
+    }
+
+
+    .project-carousel-section .project-carousel {
+
+        height: 370px;
+
+        margin-top: 25px;
+    }
+
+
+    .project-carousel-section .project-item {
+
+        flex-basis: 155px;
+
+        width: 155px;
+
+        height: 225px;
+    }
+
+
+    .project-carousel-section .project-item.active {
+
+        flex-basis: 245px;
+
+        width: 245px;
+
+        height: 350px;
+    }
+
+
+    .project-carousel-section .project-overlay {
+
+        padding:
+            50px 15px 15px;
+    }
+
+
+    .project-carousel-section .project-overlay h3 {
+
+        font-size: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 320px) {
+
+    .project-carousel-section .project-carousel {
+
+        height: 340px;
+    }
+
+
+    .project-carousel-section .project-item {
+
+        flex-basis: 140px;
+
+        width: 140px;
+
+        height: 205px;
+    }
+
+
+    .project-carousel-section .project-item.active {
+
+        flex-basis: 220px;
+
+        width: 220px;
+
+        height: 325px;
+    }
+
+}
+
+
+
+/* =========================================================
+   PARTNERSHIP CAROUSEL
+   TEXT RIGHT + IMAGE LEFT
+========================================================= */
+
+.partnership-carousel-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+
+    overflow: hidden;
+    background: #fff;
+
+    clear: both;
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.partnership-carousel-section .partnership-bg {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 48%;
+
+    background: #24235f;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   RIGHT TEXT CONTENT
+========================================================= */
+
+.partnership-carousel-section .partnership-content {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    left: auto;
+
+    width: 43%;
+    height: 100%;
+
+    padding-left: clamp(30px, 5vw, 80px);
+    padding-right: clamp(30px, 7vw, 110px);
+    padding-top: clamp(50px, 8vh, 100px);
+
+    background: #fff;
+
+    z-index: 20;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.partnership-carousel-section .label {
+    display: block;
+
+    margin-bottom: 20px;
+
+    font-size: clamp(10px, .9vw, 14px);
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+
+    color: #25255f;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.partnership-carousel-section h1 {
+    margin: 0 0 25px;
+
+    font-size: clamp(40px, 4.2vw, 68px);
+
+    line-height: .98;
+
+    font-weight: 400;
+
+    color: #161638;
+
+    letter-spacing: -2px;
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.partnership-carousel-section .partnership-info {
+    margin-top: 10px;
+
+    max-width: 520px;
+
+    font-size: clamp(12px, 1vw, 15px);
+
+    line-height: 1.6;
+
+    font-weight: 600;
+
+    color: #1d1d42;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.partnership-carousel-section p {
+    max-width: 500px;
+
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    font-size: clamp(13px, 1.05vw, 16px);
+
+    line-height: 1.6;
+
+    color: #202044;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.partnership-carousel-section .partnership-controls {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+
+.partnership-carousel-section .partnership-arrow {
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 1px solid #24245c;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    color: #24245c;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+
+.partnership-carousel-section .partnership-arrow:hover {
+    background: #24245c;
+
+    color: #fff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   LEFT CAROUSEL
+========================================================= */
+
+.partnership-carousel-section .partnership-carousel {
+    position: absolute;
+
+    top: 8%;
+    left: 0;
+    right: auto;
+
+    width: 60%;
+    height: 84%;
+
+    overflow: hidden;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.partnership-carousel-section .partnership-track {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: clamp(15px, 2vw, 30px);
+
+    transition:
+        transform .85s cubic-bezier(.77, 0, .18, 1);
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   NORMAL ITEM
+========================================================= */
+
+.partnership-carousel-section .partnership-item {
+    position: relative;
+
+    flex: 0 0 clamp(230px, 25vw, 360px);
+
+    width: clamp(230px, 25vw, 360px);
+
+    height: 62%;
+
+    overflow: hidden;
+
+    opacity: .85;
+
+    flex-shrink: 0;
+
+    transition:
+        width .85s cubic-bezier(.77, 0, .18, 1),
+        height .85s cubic-bezier(.77, 0, .18, 1),
+        flex-basis .85s cubic-bezier(.77, 0, .18, 1),
+        opacity .85s ease;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.partnership-carousel-section .partnership-item img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   ACTIVE IMAGE
+========================================================= */
+
+.partnership-carousel-section .partnership-item.active {
+    flex-basis: clamp(380px, 39vw, 570px);
+
+    width: clamp(380px, 39vw, 570px);
+
+    height: 92%;
+
+    opacity: 1;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.partnership-carousel-section .partnership-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 70px 30px 30px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, .75),
+            rgba(0, 0, 0, 0)
+        );
+
+    color: #fff;
+
+    opacity: 0;
+
+    transition: opacity .5s ease;
+}
+
+
+.partnership-carousel-section
+.partnership-item.active
+.partnership-overlay {
+    opacity: 1;
+}
+
+
+.partnership-carousel-section .partnership-overlay h3 {
+    margin: 0 0 6px;
+
+    font-size: clamp(18px, 1.5vw, 24px);
+
+    line-height: 1.2;
+}
+
+
+.partnership-carousel-section .partnership-overlay span {
+    font-size: clamp(11px, 1vw, 14px);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    .partnership-carousel-section .partnership-content {
+        width: 42%;
+    }
+
+    .partnership-carousel-section .partnership-carousel {
+        width: 57%;
+    }
+
+    .partnership-carousel-section .partnership-item {
+        flex-basis: 360px;
+        width: 360px;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+        flex-basis: 570px;
+        width: 570px;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .partnership-carousel-section .partnership-content {
+        width: 44%;
+
+        padding-right: 5%;
+        padding-left: 4%;
+        padding-top: 7%;
+    }
+
+    .partnership-carousel-section h1 {
+        font-size: clamp(38px, 4.2vw, 55px);
+    }
+
+    .partnership-carousel-section .partnership-carousel {
+        width: 65%;
+
+        top: 8%;
+        height: 84%;
+    }
+
+    .partnership-carousel-section .partnership-item {
+        flex-basis: 280px;
+        width: 280px;
+
+        height: 62%;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+        flex-basis: 440px;
+        width: 440px;
+
+        height: 92%;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .partnership-carousel-section {
+        height: 100vh;
+        min-height: 700px;
+    }
+
+    .partnership-carousel-section .partnership-bg {
+        height: 45%;
+    }
+
+    .partnership-carousel-section .partnership-content {
+        width: 42%;
+
+        padding-left: 4%;
+        padding-right: 4%;
+        padding-top: 8%;
+    }
+
+    .partnership-carousel-section h1 {
+        margin-bottom: 20px;
+
+        font-size: clamp(34px, 5vw, 48px);
+
+        letter-spacing: -1.5px;
+    }
+
+    .partnership-carousel-section .partnership-info {
+        font-size: 12px;
+    }
+
+    .partnership-carousel-section p {
+        max-width: 340px;
+
+        margin-top: 15px;
+
+        font-size: 13px;
+    }
+
+    .partnership-carousel-section .partnership-controls {
+        margin-top: 22px;
+        gap: 12px;
+    }
+
+    .partnership-carousel-section .partnership-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+
+    .partnership-carousel-section .partnership-carousel {
+        top: 7%;
+        left: 0;
+
+        width: 65%;
+        height: 85%;
+    }
+
+    .partnership-carousel-section .partnership-track {
+        gap: 15px;
+    }
+
+    .partnership-carousel-section .partnership-item {
+        flex-basis: 220px;
+        width: 220px;
+        height: 62%;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+        flex-basis: 350px;
+        width: 350px;
+        height: 92%;
+    }
+
+    .partnership-carousel-section .partnership-overlay {
+        padding: 55px 20px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE / TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .partnership-carousel-section {
+
+        height: auto;
+
+        min-height: 100vh;
+
+        padding-bottom: 50px;
+
+        overflow: hidden;
+    }
+
+    .partnership-carousel-section .partnership-bg {
+        height: 42%;
+    }
+
+    /*
+    Mobile:
+    Text first, image below
+    */
+
+    .partnership-carousel-section .partnership-content {
+
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width: 100%;
+        height: auto;
+
+        padding:
+            55px 40px 0;
+    }
+
+    .partnership-carousel-section h1 {
+        font-size: clamp(38px, 7vw, 52px);
+    }
+
+    .partnership-carousel-section p {
+        max-width: 600px;
+    }
+
+    .partnership-carousel-section .partnership-carousel {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: 100%;
+
+        height: 470px;
+
+        margin-top: 40px;
+    }
+
+    .partnership-carousel-section .partnership-item {
+
+        flex-basis: 230px;
+        width: 230px;
+
+        height: 300px;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+
+        flex-basis: 320px;
+        width: 320px;
+
+        height: 440px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 575px) {
+
+    .partnership-carousel-section {
+
+        min-height: 100vh;
+
+        padding-bottom: 35px;
+    }
+
+    .partnership-carousel-section .partnership-bg {
+        height: 38%;
+    }
+
+    .partnership-carousel-section .partnership-content {
+
+        padding:
+            45px 20px 0;
+    }
+
+    .partnership-carousel-section .label {
+
+        margin-bottom: 13px;
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+    .partnership-carousel-section h1 {
+
+        margin-bottom: 16px;
+
+        font-size: clamp(32px, 10vw, 46px);
+
+        line-height: 1;
+
+        letter-spacing: -1px;
+    }
+
+    .partnership-carousel-section .partnership-info {
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+    .partnership-carousel-section p {
+
+        margin-top: 13px;
+
+        font-size: 13px;
+
+        line-height: 1.55;
+    }
+
+    .partnership-carousel-section .partnership-controls {
+
+        margin-top: 20px;
+
+        gap: 10px;
+    }
+
+    .partnership-carousel-section .partnership-arrow {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 16px;
+    }
+
+    .partnership-carousel-section .partnership-carousel {
+
+        height: 420px;
+
+        margin-top: 30px;
+
+        width: 100%;
+    }
+
+    .partnership-carousel-section .partnership-track {
+
+        height: 100%;
+
+        gap: 12px;
+    }
+
+    .partnership-carousel-section .partnership-item {
+
+        flex-basis: 175px;
+
+        width: 175px;
+
+        height: 250px;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+
+        flex-basis: 270px;
+
+        width: 270px;
+
+        height: 395px;
+    }
+
+    .partnership-carousel-section .partnership-overlay {
+
+        padding: 60px 18px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .partnership-carousel-section .partnership-content {
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .partnership-carousel-section h1 {
+
+        font-size: 31px;
+
+        letter-spacing: -.8px;
+    }
+
+    .partnership-carousel-section .partnership-info {
+
+        font-size: 11px;
+    }
+
+    .partnership-carousel-section p {
+
+        font-size: 12px;
+    }
+
+    .partnership-carousel-section .partnership-carousel {
+
+        height: 370px;
+
+        margin-top: 25px;
+    }
+
+    .partnership-carousel-section .partnership-item {
+
+        flex-basis: 155px;
+
+        width: 155px;
+
+        height: 225px;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+
+        flex-basis: 245px;
+
+        width: 245px;
+
+        height: 350px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media (max-width: 320px) {
+
+    .partnership-carousel-section .partnership-carousel {
+        height: 340px;
+    }
+
+    .partnership-carousel-section .partnership-item {
+        flex-basis: 140px;
+        width: 140px;
+        height: 205px;
+    }
+
+    .partnership-carousel-section .partnership-item.active {
+        flex-basis: 220px;
+        width: 220px;
+        height: 325px;
+    }
+
 }
