@@ -321,7 +321,7 @@ body {
     }
 
     .building-content h2 {
-        font-size: clamp(50px, 6vw, 100px);
+        font-size: clamp(50px, 6vw, 80px);
         line-height: .9;
         font-weight: 500;
         margin: 25px 0;
@@ -1061,7 +1061,7 @@ body {
 
     width: clamp(230px, 25vw, 360px);
 
-    height: 62%;
+    height: 57%;
 
     overflow: hidden;
 
@@ -1172,7 +1172,7 @@ body {
     }
 
     .project-carousel-section .project-carousel {
-        width: 57%;
+        width: 55%;
     }
 
     .project-carousel-section .project-item {
@@ -1219,7 +1219,7 @@ body {
         flex-basis: 280px;
         width: 280px;
 
-        height: 62%;
+        height: 57%;
     }
 
 
